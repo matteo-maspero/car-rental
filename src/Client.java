@@ -1,14 +1,18 @@
-package clients;
+import java.io.Serializable;
+import java.io.Serial;
 
-public abstract class Client {
+public class Client implements Serializable {
+	@Serial
+	private static final long serialVersionUID = 1L;
+
 	private String name;
+	private String surname;
 	private String email;
-	private String phoneNumber;
 
-	public Client(String name, String email, String phoneNumber) {
+	public Client(String name, String surname, String email) {
 		this.setName(name);
+		this.setSurname(surname);
 		this.setEmail(email);
-		this.setPhoneNumber(phoneNumber);
 	}
 
 	private void setName(String name) {
@@ -22,6 +26,17 @@ public abstract class Client {
 		return this.name;
 	}
 
+	public void setSurname(String surname) {
+		if (surname == null || surname.isBlank())
+			throw new IllegalArgumentException("Surname cannot be null or blank.");
+
+		this.surname = surname;
+	}
+
+	public String getSurname() {
+		return this.surname;
+	}
+
 	private void setEmail(String email) {
 		if (email == null || email.isBlank())
 			throw new IllegalArgumentException("Email cannot be null or blank.");
@@ -31,16 +46,5 @@ public abstract class Client {
 
 	public String getEmail() {
 		return this.email;
-	}
-
-	private void setPhoneNumber(String phoneNumber) {
-		if (phoneNumber == null || phoneNumber.isBlank())
-			throw new IllegalArgumentException("Phone number cannot be null or blank.");
-
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getPhoneNumber() {
-		return this.phoneNumber;
 	}
 }

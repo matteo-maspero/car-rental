@@ -1,30 +1,56 @@
-package vehicles;
+import java.io.Serial;
+import java.io.Serializable;
 
-public abstract class Vehicle {
-	private static int counter = 0;
+public class Vehicle implements Serializable {
+	private static int nextId = 0;
+
+	@Serial
+	private static final long serialVersionUID = 1L;
 
 	private int id;
+	private float pricePerDay;
 	private String make;
 	private String model;
 	private String licensePlate;
 	private int seats;
-	private float pricePerDay;
 
-	public Vehicle(String make, String model, String licensePlate, int seats, float pricePerDay) {
+	public static void updateNextId(int nextId) {
+		if (nextId < Vehicle.nextId)
+			throw new IllegalArgumentException("Next ID must be greater than the current ID.");
+
+		Vehicle.nextId = nextId;
+	}
+
+	public static int getNextId() {
+		return Vehicle.nextId;
+	}
+
+	public Vehicle(float pricePerDay, String make, String model, String licensePlate, int seats) {
 		this.generateId();
+		this.setPricePerDay(pricePerDay);
 		this.setMake(make);
 		this.setModel(model);
 		this.setLicensePlate(licensePlate);
 		this.setSeats(seats);
-		this.setPricePerDay(pricePerDay);
 	}
 
 	private void generateId() {
-		this.id = ++counter;
+		this.id = nextId++;
 	}
 
 	public int getId() {
 		return this.id;
+	}
+
+	public void setPricePerDay(float pricePerDay) {
+		if (pricePerDay < 0)
+			throw new IllegalArgumentException("Vehicle price per day must be a non-negative number.");
+
+		this.pricePerDay = pricePerDay;
+	}
+
+	public float getPricePerDay() {
+		return this.pricePerDay;
 	}
 
 	private void setMake(String make) {
@@ -69,16 +95,5 @@ public abstract class Vehicle {
 
 	public int getSeats() {
 		return this.seats;
-	}
-
-	public void setPricePerDay(float pricePerDay) {
-		if (pricePerDay < 0)
-			throw new IllegalArgumentException("Vehicle price per day must be a non-negative number.");
-
-		this.pricePerDay = pricePerDay;
-	}
-
-	public float getPricePerDay() {
-		return this.pricePerDay;
 	}
 }
