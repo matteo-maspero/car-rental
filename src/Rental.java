@@ -18,13 +18,11 @@ public class Rental implements Serializable {
 		this.setEnd(end);
 	}
 
-	public Rental(Vehicle vehicle, Client client, LocalDate start, int days) {
-		this(vehicle, client, start, start.plusDays(days));
-	}
-
 	private void setVehicle(Vehicle vehicle) {
-		if (vehicle == null)
-			throw new IllegalArgumentException("Vehicle cannot be null.");
+		if (vehicle == null) {
+			System.err.println("Vehicle cannot be null.");
+			System.exit(1);
+		}
 
 		this.vehicle = vehicle;
 	}
@@ -34,8 +32,10 @@ public class Rental implements Serializable {
 	}
 
 	private void setClient(Client client) {
-		if (client == null)
-			throw new IllegalArgumentException("Client cannot be null.");
+		if (client == null) {
+			System.err.println("Client cannot be null.");
+			System.exit(1);
+		}
 
 		this.client = client;
 	}
@@ -45,8 +45,10 @@ public class Rental implements Serializable {
 	}
 
 	private void setStart(LocalDate start) {
-		if (start == null)
-			throw new IllegalArgumentException("From date cannot be null.");
+		if (start == null) {
+			System.err.println("Start date cannot be null.");
+			System.exit(1);
+		}
 
 		this.start = start;
 	}
@@ -56,8 +58,15 @@ public class Rental implements Serializable {
 	}
 
 	private void setEnd(LocalDate end) {
-		if (end == null)
-			throw new IllegalArgumentException("To date cannot be null.");
+		if (end == null) {
+			System.err.println("End date cannot be null.");
+			System.exit(1);
+		}
+
+		if (end.isBefore(this.start)) {
+			System.err.println("End date cannot be before from date.");
+			System.exit(1);
+		}
 
 		this.end = end;
 	}

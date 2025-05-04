@@ -15,8 +15,10 @@ public class Vehicle implements Serializable {
 	private int seats;
 
 	public static void updateNextId(int nextId) {
-		if (nextId < Vehicle.nextId)
-			throw new IllegalArgumentException("Next ID must be greater than the current ID.");
+		if (nextId < Vehicle.nextId) {
+			System.err.println("Next ID must be greater than the current ID.");
+			System.exit(1);
+		}
 
 		Vehicle.nextId = nextId;
 	}
@@ -43,8 +45,10 @@ public class Vehicle implements Serializable {
 	}
 
 	public void setPricePerDay(float pricePerDay) {
-		if (pricePerDay < 0)
-			throw new IllegalArgumentException("Vehicle price per day must be a non-negative number.");
+		if (pricePerDay < 0) {
+			System.err.println("Vehicle price per day must be a non-negative number.");
+			System.exit(1);
+		}
 
 		this.pricePerDay = pricePerDay;
 	}
@@ -54,8 +58,10 @@ public class Vehicle implements Serializable {
 	}
 
 	private void setMake(String make) {
-		if (make == null || make.isBlank())
-			throw new IllegalArgumentException("Vehicle make cannot be null or blank.");
+		if (make == null || make.isBlank()) {
+			System.err.println("Vehicle make cannot be null or blank.");
+			System.exit(1);
+		}
 
 		this.make = make;
 	}
@@ -65,8 +71,10 @@ public class Vehicle implements Serializable {
 	}
 
 	private void setModel(String model) {
-		if (model == null || model.isBlank())
-			throw new IllegalArgumentException("Vehicle model cannot be null or blank.");
+		if (model == null || model.isBlank()) {
+			System.err.println("Vehicle model cannot be null or blank.");
+			System.exit(1);
+		}
 
 		this.model = model;
 	}
@@ -76,8 +84,10 @@ public class Vehicle implements Serializable {
 	}
 
 	private void setLicensePlate(String licensePlate) {
-		if (licensePlate == null || licensePlate.isBlank())
-			throw new IllegalArgumentException("Vehicle license plate cannot be null or blank.");
+		if (licensePlate == null || !licensePlate.matches("[A-Z]{2}[0-9]{3}[A-Z]{2}")) {
+			System.err.println("Vehicle license plate format is invalid.");
+			System.exit(1);
+		}
 
 		this.licensePlate = licensePlate;
 	}
@@ -87,8 +97,10 @@ public class Vehicle implements Serializable {
 	}
 
 	private void setSeats(int seats) {
-		if (seats <= 0)
-			throw new IllegalArgumentException("Vehicle seats must be a positive number.");
+		if (seats <= 0) {
+			System.err.println("Vehicle seats must be a positive number.");
+			System.exit(1);
+		}
 
 		this.seats = seats;
 	}
