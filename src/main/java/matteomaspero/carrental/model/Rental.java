@@ -40,6 +40,6 @@ public class Rental {
 	}
 
 	public Date getEndDate() {
-		return this.endDate; // Return a copy to prevent external modification
+		return this.endDate;
 	}
 }
