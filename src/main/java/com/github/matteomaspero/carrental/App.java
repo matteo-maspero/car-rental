@@ -1,4 +1,4 @@
-package matteomaspero.carrental;
+package com.github.matteomaspero.carrental;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainApplication extends Application {
+public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/MainView.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AppView.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 		stage.setTitle("RentA Car");
 		stage.setScene(scene);

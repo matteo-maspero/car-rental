@@ -10,8 +10,11 @@ module matteomaspero.carrental {
 	requires org.kordamp.bootstrapfx.core;
 	requires eu.hansolo.tilesfx;
 
-	opens matteomaspero.carrental to javafx.fxml;
-	exports matteomaspero.carrental;
-	exports matteomaspero.carrental.controller;
-	opens matteomaspero.carrental.controller to javafx.fxml;
+	exports com.github.matteomaspero.carrental;
+	exports com.github.matteomaspero.carrental.controller;
+	exports com.github.matteomaspero.carrental.model;
+
+	opens com.github.matteomaspero.carrental to javafx.fxml;
+	opens com.github.matteomaspero.carrental.controller to javafx.fxml;
+	opens com.github.matteomaspero.carrental.model to javafx.fxml;
 }

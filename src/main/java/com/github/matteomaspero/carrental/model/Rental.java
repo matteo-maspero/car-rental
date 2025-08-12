@@ -1,4 +1,4 @@
-package matteomaspero.carrental.model;
+package com.github.matteomaspero.carrental.model;
 
 import java.util.Date;
 
